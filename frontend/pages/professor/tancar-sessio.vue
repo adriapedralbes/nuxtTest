@@ -9,8 +9,8 @@
       </p>
       <div class="buttons mt-6 flex justify-center space-x-4">
         <button
-          @click="handleLogout"
           class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500"
+          @click="handleLogout"
         >
           Tancar Sessió
         </button>

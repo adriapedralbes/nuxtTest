@@ -19,9 +19,9 @@ const emit = defineEmits(["update:modelValue"]);
     <input
       type="text"
       :value="modelValue"
-      @input="e => emit('update:modelValue', e.target.value)"
       :placeholder="placeholder"
       :class="{ error: hasError }"
+      @input="e => emit('update:modelValue', e.target.value)"
     />
   </div>
 </template>

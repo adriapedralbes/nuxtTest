@@ -127,8 +127,8 @@ const goBack = () => {
               type="checkbox"
               :value="student.id"
               :checked="selectedStudents.includes(student.id)"
-              @change="toggleSelection(student.id)"
               class="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+              @change="toggleSelection(student.id)"
             />
           </div>
         </li>
@@ -136,13 +136,13 @@ const goBack = () => {
     </div>
 
     <div class="flex justify-between mt-6">
-      <button @click="goBack" class="btn btn-primary sm:w-auto w-full">
+      <button class="btn btn-primary sm:w-auto w-full" @click="goBack">
         Tornar a Grups
       </button>
       <button
         :disabled="!groupName || selectedStudents.length === 0 || isLoading"
-        @click="handleCreateGroup"
         class="btn btn-primary sm:w-auto w-full"
+        @click="handleCreateGroup"
       >
         Crear Grup
       </button>

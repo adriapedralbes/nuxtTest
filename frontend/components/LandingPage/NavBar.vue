@@ -13,9 +13,9 @@
       <!-- Mobile menu button -->
       <div class="flex lg:hidden">
         <button
-          @click="toggleMenu"
           type="button"
           class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          @click="toggleMenu"
         >
           <span class="sr-only">Menú principal</span>
           <svg
@@ -44,8 +44,8 @@
       <!-- Desktop navigation -->
       <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-4">
         <button
-          @click="$emit('show-contact')"
           class="text-sm font-semibold text-gray-900 hover:text-indigo-600"
+          @click="$emit('show-contact')"
         >
           Contacte
         </button>
@@ -61,8 +61,8 @@
     <div v-show="isMenuOpen" class="lg:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <button
-          @click="handleContactClick"
           class="block w-full text-left px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-indigo-600"
+          @click="handleContactClick"
         >
           Contacte
         </button>

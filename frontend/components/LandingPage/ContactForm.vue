@@ -8,7 +8,7 @@
       <h2 class="text-3xl font-semibold text-gray-900 text-center mb-8">
         Formulario de Contacto
       </h2>
-      <form @submit.prevent="handleSubmit" class="space-y-6">
+      <form class="space-y-6" @submit.prevent="handleSubmit">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label
@@ -17,9 +17,9 @@
               >Nom</label
             >
             <input
-              type="text"
               id="first-name"
               v-model="form.firstName"
+              type="text"
               required
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
             />
@@ -31,9 +31,9 @@
               >Cognom</label
             >
             <input
-              type="text"
               id="last-name"
               v-model="form.lastName"
+              type="text"
               required
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
             />
@@ -44,9 +44,9 @@
             >Número de Telèfon</label
           >
           <input
-            type="tel"
             id="phone"
             v-model="form.phone"
+            type="tel"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
           />
@@ -56,9 +56,9 @@
             >Email</label
           >
           <input
-            type="email"
             id="email"
             v-model="form.email"
+            type="email"
             required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
           />
@@ -73,8 +73,8 @@
         </div>
       </form>
       <button
-        @click="$emit('close')"
         class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        @click="$emit('close')"
       >
         <span class="text-xl">×</span>
       </button>

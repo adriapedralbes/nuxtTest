@@ -23,7 +23,7 @@ defineProps({
 </script>
 
 <template>
-  <tr class="border-b hover:bg-gray-50" :key="student.id">
+  <tr :key="student.id" class="border-b hover:bg-gray-50">
     <td class="py-4">
       <div class="flex items-center space-x-3">
         <div

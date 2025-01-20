@@ -18,17 +18,17 @@ defineEmits([
       <div class="flex-1 min-w-[200px]">
         <input
           :value="searchQuery"
-          @input="$emit('update:searchQuery', $event.target.value)"
           type="text"
           placeholder="Buscar per nom o email..."
           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+          @input="$emit('update:searchQuery', $event.target.value)"
         />
       </div>
       <div class="flex space-x-4">
         <select
           :value="selectedCourse"
-          @change="$emit('update:selectedCourse', $event.target.value)"
           class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+          @change="$emit('update:selectedCourse', $event.target.value)"
         >
           <option value="all">Tots els cursos</option>
           <option value="1">1º ESO</option>
@@ -40,8 +40,8 @@ defineEmits([
         </select>
         <select
           :value="selectedDivision"
-          @change="$emit('update:selectedDivision', $event.target.value)"
           class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+          @change="$emit('update:selectedDivision', $event.target.value)"
         >
           <option value="all">Totes les classes</option>
           <option value="A">A</option>

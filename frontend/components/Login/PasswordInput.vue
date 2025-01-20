@@ -19,19 +19,19 @@ const togglePasswordVisibility = () => {
     <input
       :type="showPassword ? 'text' : 'password'"
       :value="modelValue"
-      @input="emit('update:modelValue', $event.target.value)"
       placeholder="Contrasenya"
       :class="{ error: hasError }"
+      @input="emit('update:modelValue', $event.target.value)"
     />
 
     <!-- Botón para alternar visibilidad -->
     <button
       type="button"
       class="toggle-password"
-      @click="togglePasswordVisibility"
       :aria-label="
         showPassword ? 'Amaga la contrasenya' : 'Mostra la contrasenya'
       "
+      @click="togglePasswordVisibility"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

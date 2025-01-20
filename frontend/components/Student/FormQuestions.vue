@@ -83,7 +83,7 @@ async function submitResponses() {
       return {
         question_id: questionIdAsNumber, // Asegúrate de enviar un número
         answer: response.value,
-        answer_type: answer_type,
+        answer_type,
       };
     })
     .filter(response => response !== null); // Filtrar las respuestas vacías
@@ -134,10 +134,10 @@ async function submitResponses() {
         <!-- Manejo de diferentes tipos de preguntas -->
         <div v-if="question.type === 'text'">
           <input
+            v-model="responses[question.id].value"
             type="text"
             class="mt-2 p-2 border rounded w-full"
             :placeholder="question.placeholder"
-            v-model="responses[question.id].value"
           />
         </div>
 
@@ -145,11 +145,11 @@ async function submitResponses() {
           <div v-for="option in question.options" :key="option.id" class="mt-2">
             <label class="flex items-center">
               <input
+                v-model="responses[question.id].value"
                 type="radio"
                 :name="'question-' + question.id"
                 :value="option.id"
                 class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-500"
-                v-model="responses[question.id].value"
               />
               <span class="ml-2 text-gray-700">{{ option.text }}</span>
             </label>
@@ -160,11 +160,11 @@ async function submitResponses() {
           <div v-for="option in question.options" :key="option.id" class="mt-2">
             <label class="flex items-center">
               <input
+                v-model="responses[question.id].value"
                 type="checkbox"
                 :name="'question-' + question.id"
                 :value="option.id"
                 class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-2 focus:ring-blue-500"
-                v-model="responses[question.id].value"
               />
               <span class="ml-2 text-gray-700">{{ option.text }}</span>
             </label>
@@ -173,10 +173,10 @@ async function submitResponses() {
 
         <div v-if="question.type === 'number'">
           <input
+            v-model="responses[question.id].value"
             type="number"
             class="mt-2 p-2 border rounded w-full"
             :placeholder="question.placeholder"
-            v-model="responses[question.id].value"
           />
         </div>
       </div>

@@ -41,12 +41,12 @@
           </div>
           <div class="mt-3 flex justify-between items-center">
             <button
-              @click="handleFormClick(form.id)"
               :class="
                 form.answered === 1 ? 'bg-green-300' : 'bg-primary text-white'
               "
               :disabled="form.answered === 1"
               class="mt-4 px-4 py-2 rounded"
+              @click="handleFormClick(form.id)"
             >
               {{ form.answered === 1 ? "Completado" : "Completar" }}
             </button>

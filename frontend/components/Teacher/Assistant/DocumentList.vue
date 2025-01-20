@@ -50,8 +50,8 @@ const formatDate = timestamp => {
     </div>
 
     <div
-      v-else
       v-for="doc in chatDocuments"
+      v-else
       :key="doc.id"
       class="flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
     >
@@ -81,8 +81,8 @@ const formatDate = timestamp => {
       </div>
 
       <button
-        @click="handleDelete(doc.id)"
         class="p-1 text-gray-400 hover:text-red-500 transition-colors"
+        @click="handleDelete(doc.id)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -66,8 +66,8 @@ const close = () => {
       >
         <!-- Close button -->
         <button
-          @click="close"
           class="absolute right-4 top-4 text-gray-400 hover:text-gray-500"
+          @click="close"
         >
           <XMarkIcon class="h-6 w-6" />
         </button>
@@ -109,15 +109,15 @@ const close = () => {
                     :placeholder="`Opción ${index + 1}`"
                   />
                   <button
-                    @click="removeOption(index)"
                     class="text-red-500 hover:text-red-700"
+                    @click="removeOption(index)"
                   >
                     ×
                   </button>
                 </div>
                 <button
-                  @click="addOption"
                   class="text-primary hover:text-primary/80 text-sm font-medium"
+                  @click="addOption"
                 >
                   + Afegir opcions
                 </button>
@@ -129,14 +129,14 @@ const close = () => {
         <!-- Actions -->
         <div class="mt-5 sm:mt-6 flex justify-end space-x-3">
           <button
-            @click="close"
             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-800"
+            @click="close"
           >
             Cancelar
           </button>
           <button
-            @click="handleSave"
             class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90"
+            @click="handleSave"
           >
             Desar canvis
           </button>

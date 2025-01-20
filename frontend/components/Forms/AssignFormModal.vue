@@ -66,8 +66,8 @@ const close = () => {
         class="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
       >
         <button
-          @click="close"
           class="absolute right-4 top-4 text-gray-400 hover:text-gray-500"
+          @click="close"
         >
           <XMarkIcon class="h-6 w-6" />
         </button>
@@ -100,9 +100,9 @@ const close = () => {
                   class="flex items-center space-x-2 p-2 hover:bg-gray-50"
                 >
                   <input
-                    type="checkbox"
                     :id="'student-' + student.id"
                     v-model="selectedStudents"
+                    type="checkbox"
                     :value="student.id"
                     class="rounded text-primary focus:ring-primary"
                   />
@@ -117,14 +117,14 @@ const close = () => {
 
         <div class="mt-5 sm:mt-6 flex justify-end space-x-3">
           <button
-            @click="close"
             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-800"
+            @click="close"
           >
             Cancelar
           </button>
           <button
-            @click="assignForm"
             class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90"
+            @click="assignForm"
           >
             Assignar Formulari
           </button>

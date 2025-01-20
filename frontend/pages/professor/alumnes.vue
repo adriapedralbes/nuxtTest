@@ -27,8 +27,8 @@ const goToDashboard = () => {
     <div class="relative flex items-center mb-6">
       <!-- Botón de volver -->
       <button
-        @click="goToDashboard"
         class="absolute left-0 flex items-center space-x-1 text-gray-700 hover:text-gray-900"
+        @click="goToDashboard"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +55,9 @@ const goToDashboard = () => {
     <div v-if="isLoading" class="text-center p-8">Carregant estudiants...</div>
     <div v-else>
       <TeacherStudentFilters
-        v-model:searchQuery="searchQuery"
-        v-model:selectedCourse="selectedCourse"
-        v-model:selectedDivision="selectedDivision"
+        v-model:search-query="searchQuery"
+        v-model:selected-course="selectedCourse"
+        v-model:selected-division="selectedDivision"
       />
       <TeacherStudentList :students="filteredStudents" />
     </div>

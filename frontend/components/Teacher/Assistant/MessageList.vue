@@ -27,7 +27,7 @@ watch(() => props.isLoading, scrollToBottom);
 </script>
 
 <template>
-  <div class="messages" ref="messagesContainer">
+  <div ref="messagesContainer" class="messages">
     <div class="messages__wrapper">
       <TeacherAssistantTransitionGroup name="message">
         <TeacherAssistantMessage

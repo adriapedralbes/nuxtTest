@@ -172,8 +172,8 @@ function showToastMessage(message, type = "success-toast") {
         <div class="flex justify-between items-center">
           <h2 class="text-2xl font-bold mb-2">{{ titleContent }}</h2>
           <button
-            @click="handleDownload"
             class="text-gray-600 hover:text-primary transition duration-200"
+            @click="handleDownload"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +248,7 @@ function showToastMessage(message, type = "success-toast") {
         v-if="localQuestions.length > 0"
         class="flex justify-end space-x-4 pt-4"
       >
-        <button @click="handleSave" class="btn btn-primary">Guardar</button>
+        <button class="btn btn-primary" @click="handleSave">Guardar</button>
       </div>
 
       <FormsBuilderQuestionEditorModal

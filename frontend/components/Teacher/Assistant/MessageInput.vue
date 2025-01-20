@@ -37,10 +37,10 @@ const handleSuggestionSelect = suggestion => {
 
     <div class="flex items-center space-x-2 px-4">
       <button
-        @click="toggleUploadZone"
         class="p-2 rounded-full hover:bg-gray-100 transition-colors"
         :class="{ 'text-primary bg-primary/10': showUploadZone }"
         title="Upload file"
+        @click="toggleUploadZone"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -65,9 +65,9 @@ const handleSuggestionSelect = suggestion => {
       />
 
       <button
-        @click="handleSubmit"
         :disabled="isLoading"
         class="p-4 rounded-full bg-primary text-white hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        @click="handleSubmit"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

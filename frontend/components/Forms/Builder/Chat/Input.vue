@@ -32,14 +32,14 @@ const props = defineProps({
       :placeholder="placeholder"
       class="w-full px-4 py-3 pr-12 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow duration-200"
       :class="{ 'opacity-50 cursor-not-allowed': disabled }"
-      @keyup.enter="sendMessage"
       :disabled="disabled"
+      @keyup.enter="sendMessage"
     />
     <button
-      @click="sendMessage"
       class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-primary hover:bg-primary/10 rounded-full transition-colors duration-200"
       :disabled="disabled || !message.trim()"
       :class="{ 'opacity-50 cursor-not-allowed': disabled || !message.trim() }"
+      @click="sendMessage"
     >
       <PaperAirplaneIcon class="w-5 h-5" />
     </button>

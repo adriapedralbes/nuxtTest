@@ -56,8 +56,8 @@ const gestioGoogleLogin = async () => {
   <div class="social-login">
     <button
       class="social-button"
-      @click="gestioGoogleLogin"
       aria-label="Entra amb Google"
+      @click="gestioGoogleLogin"
     >
       <img src="/icons/google.svg" alt="Google icon" />
       <span>Google / @inspedralbes.cat</span>

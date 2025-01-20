@@ -24,9 +24,9 @@ const messageTime = computed(() => {
 </script>
 
 <template>
-  <div :class="['message', { 'message--user': isUser }]" v-motion-slide-up>
+  <div v-motion-slide-up :class="['message', { 'message--user': isUser }]">
     <div class="message__container">
-      <div class="message__avatar" v-if="!isUser">
+      <div v-if="!isUser" class="message__avatar">
         <svg viewBox="0 0 24 24" class="icon">
           <path
             fill="currentColor"

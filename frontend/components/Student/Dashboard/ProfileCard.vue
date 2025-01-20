@@ -72,11 +72,11 @@ onMounted(() => {
         </div>
       </div>
       <input
-        type="file"
         ref="fileInput"
+        type="file"
         class="hidden"
-        @change="handleFileChange"
         accept="image/*"
+        @change="handleFileChange"
       />
 
       <!-- Información del estudiante -->

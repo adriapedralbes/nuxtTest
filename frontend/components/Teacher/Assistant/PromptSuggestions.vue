@@ -20,8 +20,8 @@ const handleSelect = suggestion => {
     <button
       v-for="suggestion in suggestions"
       :key="suggestion"
-      @click="handleSelect(suggestion)"
       class="text-xs px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
+      @click="handleSelect(suggestion)"
     >
       {{ suggestion }}
     </button>

@@ -1,6 +1,6 @@
 <script setup>
 const name = ref("");
-const last_name = ref("");
+const lastName = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -13,7 +13,7 @@ const validateForm = () => {
     msgError.value = "El nom és obligatori";
     return false;
   }
-  if (!last_name.value) {
+  if (!lastName.value) {
     msgError.value = "El cognom és obligatori";
     return false;
   }
@@ -50,7 +50,7 @@ const gestioSubmit = async e => {
       },
       body: JSON.stringify({
         name: name.value,
-        last_name: last_name.value,
+        lastName: lastName.value,
         email: email.value,
         password: password.value,
         password_confirmation: confirmPassword.value, // Añade esto
@@ -90,29 +90,29 @@ const gestioSubmit = async e => {
         <p>Gestió d'informació acadèmica</p>
       </div>
 
-      <form @submit="gestioSubmit" class="login-form">
+      <form class="login-form" @submit="gestioSubmit">
         <LoginTextInput
           v-model="name"
           placeholder="Nom "
-          :has-msgError="msgError && !name"
+          :has-msg-error="msgError && !name"
         />
         <LoginTextInput
-          v-model="last_name"
+          v-model="lastName"
           placeholder="Cognom "
-          :has-msgError="msgError && !last_name"
+          :has-msg-error="msgError && !lastName"
         />
         <LoginTextInput
           v-model="email"
           placeholder="Correu electrònic"
-          :has-msgError="msgError && !email"
+          :has-msg-error="msgError && !email"
         />
         <LoginPasswordInput
           v-model="password"
-          :has-msgError="msgError && !password"
+          :has-msg-error="msgError && !password"
         />
         <LoginPasswordInput
           v-model="confirmPassword"
-          :has-msgError="msgError && !confirmPassword"
+          :has-msg-error="msgError && !confirmPassword"
           placeholder="Confirma la contrasenya"
         />
 

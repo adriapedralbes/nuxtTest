@@ -122,8 +122,8 @@ const getUserPositionStyle = (userId, index, total) => {
     </div>
     <button
       style="position: absolute; bottom: 10px; right: 10px"
-      @click="navigateTo('/professor/dashboard')"
       class="mb-4 px-4 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-400"
+      @click="navigateTo('/professor/dashboard')"
     >
       Tornar al Dashboard
     </button>

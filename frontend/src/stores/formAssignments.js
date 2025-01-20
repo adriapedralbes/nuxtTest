@@ -34,9 +34,6 @@ export const useFormAssignmentsStore = defineStore("formAssignments", () => {
         if (!response.ok) {
           throw new Error("Error en la asignación del formulario");
         }
-
-        const result = await response.json();
-        // console.log('Assignació exitosa:', result)
       } catch (error) {
         console.error("Error al assignar el formulari:", error);
       }

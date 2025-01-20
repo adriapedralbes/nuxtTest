@@ -96,8 +96,8 @@ const handleFormAssigned = assignments => {
     <!-- Contenedor del título y botón de volver -->
     <div class="relative flex items-center mb-6">
       <button
-        @click="navigateTo('/professor/dashboard')"
         class="absolute left-0 flex items-center space-x-1 text-gray-700 hover:text-gray-900"
+        @click="navigateTo('/professor/dashboard')"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -119,8 +119,8 @@ const handleFormAssigned = assignments => {
       <h1 class="flex-grow text-center text-2xl font-bold">Formularis</h1>
 
       <button
-        @click="navigateTo('/professor/formularis/nou')"
         class="absolute right-0 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center space-x-2"
+        @click="navigateTo('/professor/formularis/nou')"
       >
         <PlusIcon class="w-5 h-5" />
         <span>Nou Formulari</span>
@@ -222,8 +222,8 @@ const handleFormAssigned = assignments => {
                 <div class="flex justify-end space-x-3">
                   <button
                     class="flex items-center space-x-1 px-3 py-1 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
-                    @click="openAssignModal(form)"
                     title="Asignar a estudiantes"
+                    @click="openAssignModal(form)"
                   >
                     <UserGroupIcon class="w-4 h-4" />
                     <span>Assignar</span>

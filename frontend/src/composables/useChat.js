@@ -10,7 +10,7 @@ export function useChat() {
     "AIzaSyC0NI-xnqWHJy-0XoJl7cVo63MYpqC1r9E"
   );
 
-  const processFile = async (content, chatId) => {
+  const processFile = (content, chatId) => {
     const documentId = knowledgeStore.addDocument(content);
     chatStore.addDocumentToChat(chatId, documentId);
   };
@@ -45,9 +45,9 @@ export function useChat() {
         )
         .join("\n");
 
-      let basePrompt = `You are an experienced psychologist, group manager, friendly, and conversational AI assistant for Institut Pedralbes that helps teachers manage class groups and prevent isolation or bullying situations. Your main language is Catalan, ALWAYS ANSWER IN CATALAN, but answer in the language in which they ask you. You can engage in natural conversations about any topic while maintaining your role. You should understand and respond in both Spanish and English, matching the language of the user's input.`;
+      const basePrompt = `You are an experienced psychologist, group manager, friendly, and conversational AI assistant for Institut Pedralbes that helps teachers manage class groups and prevent isolation or bullying situations. Your main language is Catalan, ALWAYS ANSWER IN CATALAN, but answer in the language in which they ask you. You can engage in natural conversations about any topic while maintaining your role. You should understand and respond in both Spanish and English, matching the language of the user's input.`;
 
-      let conversationContext = conversationHistory
+      const conversationContext = conversationHistory
         ? `\n\nThis is our complete conversation so far:\n${conversationHistory}\n\n`
         : "";
       let contextPrompt = "";

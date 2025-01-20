@@ -99,7 +99,7 @@ async function submitResponses() {
       const answer = responses.value[questionId];
       return {
         question_id: parseInt(questionId),
-        answer: answer,
+        answer,
         answer_type: determineAnswerType(answer), // Llamamos a una función para determinar el tipo de respuesta
       };
     });
@@ -164,7 +164,6 @@ onMounted(async () => {
         <button
           v-for="user in userNames"
           :key="user.id"
-          @click="toggleSelection(user.id)"
           :disabled="
             responses[currentQuestion?.id]?.length >= 3 &&
             !responses[currentQuestion?.id]?.includes(user.id)
@@ -184,6 +183,7 @@ onMounted(async () => {
               responses[currentQuestion?.id]?.length < 3 ||
               responses[currentQuestion?.id]?.includes(user.id),
           }"
+          @click="toggleSelection(user.id)"
         >
           {{ user.name }}
         </button>
@@ -198,16 +198,16 @@ onMounted(async () => {
           currentQuestionIndex < questions.length - 1 &&
           responses[currentQuestion?.id]?.length === 3
         "
-        @click="goToNextQuestion"
         class="mt-6 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+        @click="goToNextQuestion"
       >
         Siguiente pregunta
       </button>
 
       <button
         v-else-if="responses[currentQuestion?.id]?.length === 3"
-        @click="submitResponses"
         class="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        @click="submitResponses"
       >
         Finalizar
       </button>

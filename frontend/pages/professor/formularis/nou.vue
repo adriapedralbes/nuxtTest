@@ -77,7 +77,7 @@ const saveForm = () => {
     createdAt: new Date().toISOString(),
   };
 
-  // console.log('Guardant formulari:', form)
+  console.log("Guardant formulari:", form);
   alert("Formulari guardat correctament");
   navigateTo("/professor/formularis");
 };
@@ -91,7 +91,7 @@ const handleSendForm = () => {
 };
 
 const handleFormAssigned = assignments => {
-  // console.log('Formulari assignat:', assignments)
+  console.log("Formulari assignat:", assignments);
   alert("Formulari enviat correctament als alumnes seleccionats");
   navigateTo("/professor/formularis");
 };
@@ -104,8 +104,8 @@ const handleFormAssigned = assignments => {
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <button
-              @click="goBack"
               class="mr-4 text-gray-600 hover:text-gray-900"
+              @click="goBack"
             >
               ← Tornar
             </button>

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useFormTemplatesStore } from "@/src/stores/formTemplates";
 import { DocumentDuplicateIcon, PencilIcon } from "@heroicons/vue/24/outline";
+import { useFormTemplatesStore } from "@/src/stores/formTemplates";
 
 const emit = defineEmits(["select"]);
 const formTemplatesStore = useFormTemplatesStore();
@@ -46,16 +46,16 @@ const filteredTemplates = computed(() => {
           <h4 class="font-medium text-gray-800">{{ template.title }}</h4>
           <div class="flex gap-2">
             <button
-              @click="emit('select', { ...template })"
               class="p-1.5 text-gray-400 hover:text-primary rounded-full hover:bg-primary/10 transition-colors"
               title="Usar plantilla"
+              @click="emit('select', { ...template })"
             >
               <DocumentDuplicateIcon class="w-4 h-4" />
             </button>
             <button
-              @click="emit('select', { ...template, edit: true })"
               class="p-1.5 text-gray-400 hover:text-primary rounded-full hover:bg-primary/10 transition-colors"
               title="Editar plantilla"
+              @click="emit('select', { ...template, edit: true })"
             >
               <PencilIcon class="w-4 h-4" />
             </button>

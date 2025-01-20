@@ -21,8 +21,8 @@ defineEmits(["select"]);
       <button
         v-for="(suggestion, index) in suggestions"
         :key="index"
-        @click="$emit('select', suggestion)"
         class="px-2.5 py-1 text-xs rounded-full bg-gray-50 text-gray-600 hover:bg-primary/5 hover:text-primary transition-colors duration-200"
+        @click="$emit('select', suggestion)"
       >
         {{ suggestion }}
       </button>

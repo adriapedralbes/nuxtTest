@@ -36,8 +36,8 @@ const toggleDocuments = () => {
         </div>
       </div>
       <button
-        @click="toggleDocuments"
         class="text-sm text-gray-500 hover:text-gray-700 flex items-center space-x-1"
+        @click="toggleDocuments"
       >
         <span>{{ documentCount }} documents</span>
         <svg

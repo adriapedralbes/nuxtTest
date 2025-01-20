@@ -46,8 +46,8 @@ const getDocumentCount = chat => {
   <div class="h-full flex flex-col bg-white border-r border-gray-200">
     <div class="p-4">
       <button
-        @click="handleNewChat"
         class="w-full px-4 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 shadow-sm"
+        @click="handleNewChat"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,12 +83,12 @@ const getDocumentCount = chat => {
                 class="flex items-center space-x-2"
               >
                 <input
+                  ref="editInput"
                   v-model="editingName"
                   type="text"
                   class="flex-1 px-2 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-primary"
                   @keyup.enter="saveEditedName(chat.id)"
                   @blur="saveEditedName(chat.id)"
-                  ref="editInput"
                 />
               </div>
               <div v-else class="flex items-center justify-between">
@@ -99,9 +99,9 @@ const getDocumentCount = chat => {
             </div>
             <div class="flex items-center space-x-2 ml-2">
               <button
-                @click.stop="startEditing(chat)"
                 class="p-1 text-gray-400 hover:text-gray-600"
                 title="Rename chat"
+                @click.stop="startEditing(chat)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -115,9 +115,9 @@ const getDocumentCount = chat => {
                 </svg>
               </button>
               <button
-                @click.stop="handleDeleteChat(chat.id)"
                 class="p-1 text-gray-400 hover:text-red-600"
                 title="Delete chat"
+                @click.stop="handleDeleteChat(chat.id)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -7,7 +7,6 @@ const msgError = ref("");
 const successMessage = ref("");
 
 // Router y rutas
-const router = useRouter();
 const route = useRoute();
 
 // Mensaje de registro exitoso
@@ -80,7 +79,7 @@ const gestioSubmit = async e => {
           <p>Gestió d'informació académica</p>
         </header>
 
-        <form @submit="gestioSubmit" class="login-form">
+        <form class="login-form" @submit="gestioSubmit">
           <!-- Mensaje de éxito -->
           <div v-if="successMessage" class="success-message">
             {{ successMessage }}
@@ -119,8 +118,8 @@ const gestioSubmit = async e => {
             <p>
               No tens un compte?
               <a
-                @click.prevent="navigateTo('/register')"
                 class="cursor-pointer font-bold"
+                @click.prevent="navigateTo('/register')"
               >
                 Registrar-se
               </a>
