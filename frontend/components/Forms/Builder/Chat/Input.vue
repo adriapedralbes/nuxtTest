@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue';
-import { PaperAirplaneIcon } from '@heroicons/vue/24/outline';
+import { ref } from "vue";
+import { PaperAirplaneIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(['send']);
-const message = ref('');
+const emit = defineEmits(["send"]);
+const message = ref("");
 const inputRef = ref(null);
 
 const sendMessage = () => {
   if (!message.value.trim() || props.disabled) return;
 
-  emit('send', message.value);
-  message.value = '';
+  emit("send", message.value);
+  message.value = "";
   inputRef.value?.focus();
 };
 
@@ -18,7 +18,7 @@ const props = defineProps({
   disabled: Boolean,
   placeholder: {
     type: String,
-    default: 'Escribe tu mensaje...',
+    default: "Escribe tu mensaje...",
   },
 });
 </script>

@@ -1,38 +1,36 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { useFormTemplatesStore } from '@/src/stores/formTemplates'
-import { DocumentDuplicateIcon, PencilIcon } from '@heroicons/vue/24/outline'
+import { ref, computed } from "vue";
+import { useFormTemplatesStore } from "@/src/stores/formTemplates";
+import { DocumentDuplicateIcon, PencilIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(['select'])
-const formTemplatesStore = useFormTemplatesStore()
-const selectedCategory = ref('all')
+const emit = defineEmits(["select"]);
+const formTemplatesStore = useFormTemplatesStore();
+const selectedCategory = ref("all");
 
 const categories = {
-  all: 'Totes les plantilles',
-  ...formTemplatesStore.categories
-}
+  all: "Totes les plantilles",
+  ...formTemplatesStore.categories,
+};
 
 const filteredTemplates = computed(() => {
-  if (selectedCategory.value === 'all') {
-    return formTemplatesStore.templates
+  if (selectedCategory.value === "all") {
+    return formTemplatesStore.templates;
   }
-  return formTemplatesStore.getTemplatesByCategory(selectedCategory.value)
-})
+  return formTemplatesStore.getTemplatesByCategory(selectedCategory.value);
+});
 </script>
 
 <template>
   <div class="bg-white rounded-lg shadow-md p-6">
     <div class="flex justify-between items-center mb-6">
-      <h3 class="text-lg font-semibold text-gray-800">Plantilles de Formularis</h3>
+      <h3 class="text-lg font-semibold text-gray-800">
+        Plantilles de Formularis
+      </h3>
       <select
         v-model="selectedCategory"
         class="px-3 py-1.5 text-sm border rounded-lg text-gray-600"
       >
-        <option
-          v-for="(name, key) in categories"
-          :key="key"
-          :value="key"
-        >
+        <option v-for="(name, key) in categories" :key="key" :value="key">
           {{ name }}
         </option>
       </select>

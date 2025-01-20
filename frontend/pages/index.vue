@@ -1,7 +1,10 @@
 <template>
   <div class="bg-white min-h-screen flex flex-col">
     <LandingPageNavBar @show-contact="showContactForm" />
-    <LandingPageContactForm :is-visible="isContactFormVisible" @close="closeContactForm" />
+    <LandingPageContactForm
+      :is-visible="isContactFormVisible"
+      @close="closeContactForm"
+    />
     <LandingPageHeroSection />
     <LandingPageImageCarousel />
     <LandingPageEducationSection />
@@ -11,14 +14,14 @@
 
 <script setup>
 // Estado reactivo
-const isContactFormVisible = ref(false)
+const isContactFormVisible = ref(false);
 
 // Métodos para manejar el formulario de contacto
 const showContactForm = () => {
-  isContactFormVisible.value = true
-}
+  isContactFormVisible.value = true;
+};
 
 const closeContactForm = () => {
-  isContactFormVisible.value = false
-}
+  isContactFormVisible.value = false;
+};
 </script>

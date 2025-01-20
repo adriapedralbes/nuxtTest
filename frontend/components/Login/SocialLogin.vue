@@ -1,5 +1,5 @@
 <script setup>
-import { googleAuthCodeLogin } from 'vue3-google-login';
+import { googleAuthCodeLogin } from "vue3-google-login";
 
 const userData = ref(null);
 
@@ -9,51 +9,57 @@ const gestioGoogleLogin = async () => {
     const response = await googleAuthCodeLogin();
 
     // Intercambia el código de autorización por un token de acceso
-    const tokenResponse = await $fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
+    const tokenResponse = await $fetch("https://oauth2.googleapis.com/token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
         code: response.code,
         client_id: googleClientId,
         client_secret: googleClientSecret,
         redirect_uri: window.location.origin,
-        grant_type: 'authorization_code',
+        grant_type: "authorization_code",
       }),
     });
 
     const { access_token } = tokenResponse;
 
     // Obtén la información del usuario con el token de acceso
-    const userInfo = await $fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: `Bearer ${access_token}` },
-    });
+    const userInfo = await $fetch(
+      "https://www.googleapis.com/oauth2/v3/userinfo",
+      {
+        headers: { Authorization: `Bearer ${access_token}` },
+      }
+    );
 
     userData.value = userInfo;
 
     // Comprueba que el correo pertenece al dominio permitido
-    if (!userData.value.email?.endsWith('@inspedralbes.cat')) {
-      throw new Error('Només es permet l\'accés amb comptes @inspedralbes.cat');
+    if (!userData.value.email?.endsWith("@inspedralbes.cat")) {
+      throw new Error("Només es permet l'accés amb comptes @inspedralbes.cat");
     }
 
     // Almacena los datos del usuario en el almacenamiento local
-    localStorage.setItem('user', JSON.stringify(userData.value));
+    localStorage.setItem("user", JSON.stringify(userData.value));
 
     // Redirige al panel de control
-    navigateTo('/dashboard');
+    navigateTo("/dashboard");
   } catch (error) {
-    console.error('Error al iniciar sessió amb Google:', error);
-    alert(error.message || 'Error al iniciar sessió amb Google');
+    console.error("Error al iniciar sessió amb Google:", error);
+    alert(error.message || "Error al iniciar sessió amb Google");
   }
 };
 </script>
 
-
 <template>
   <div class="social-login">
-    <button class="social-button" @click="gestioGoogleLogin" aria-label="Entra amb Google">
-      <img src="/icons/google.svg" alt="Google icon">
+    <button
+      class="social-button"
+      @click="gestioGoogleLogin"
+      aria-label="Entra amb Google"
+    >
+      <img src="/icons/google.svg" alt="Google icon" />
       <span>Google / @inspedralbes.cat</span>
     </button>
   </div>

@@ -2,12 +2,12 @@
 const props = defineProps({
   messages: {
     type: Array,
-    required: true
+    required: true,
   },
   isLoading: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const messagesContainer = ref(null);
@@ -37,7 +37,10 @@ watch(() => props.isLoading, scrollToBottom);
           class="message-item"
         />
       </TeacherAssistantTransitionGroup>
-      <TeacherAssistantTypingIndicator v-if="isLoading" class="typing-indicator" />
+      <TeacherAssistantTypingIndicator
+        v-if="isLoading"
+        class="typing-indicator"
+      />
     </div>
   </div>
 </template>

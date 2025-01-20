@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useKnowledgeStore = defineStore('knowledge', {
+export const useKnowledgeStore = defineStore("knowledge", {
   state: () => ({
     documents: [],
   }),
@@ -27,14 +27,17 @@ export const useKnowledgeStore = defineStore('knowledge', {
     },
 
     loadFromLocalStorage() {
-      const saved = localStorage.getItem('teachingAssistantKnowledge');
+      const saved = localStorage.getItem("teachingAssistantKnowledge");
       if (saved) {
         this.documents = JSON.parse(saved);
       }
     },
 
     saveToLocalStorage() {
-      localStorage.setItem('teachingAssistantKnowledge', JSON.stringify(this.documents));
+      localStorage.setItem(
+        "teachingAssistantKnowledge",
+        JSON.stringify(this.documents)
+      );
     },
 
     getAllDocuments() {

@@ -1,9 +1,9 @@
 <script setup>
-import { generateFormQuestions } from '@/src/services/gemini';
-import { useScrollToBottom } from '@/components/utils/chat';
-import { useFormSuggestions } from '@/components/utils/formSuggestions';
+import { generateFormQuestions } from "@/src/services/gemini";
+import { useScrollToBottom } from "@/components/utils/chat";
+import { useFormSuggestions } from "@/components/utils/formSuggestions";
 
-const emit = defineEmits(['generate-questions']);
+const emit = defineEmits(["generate-questions"]);
 
 const chatHistory = ref([]);
 const isGenerating = ref(false);
@@ -15,27 +15,27 @@ const { getCurrentSuggestions, rotateSuggestions } = useFormSuggestions();
 
 const currentSuggestions = ref(getCurrentSuggestions());
 
-const generateAIResponse = async (message) => {
+const generateAIResponse = async message => {
   isGenerating.value = true;
 
   try {
     const response = await generateFormQuestions(message);
 
     chatHistory.value.push({
-      role: 'assistant',
+      role: "assistant",
       content:
-        'He generat un formulari basat en les vostres necessitats. Vols ajustar alguna pregunta?',
+        "He generat un formulari basat en les vostres necessitats. Vols ajustar alguna pregunta?",
       success: true,
     });
 
-    emit('generate-questions', response);
+    emit("generate-questions", response);
   } catch (error) {
-    console.error('Error en la generació:', error);
+    console.error("Error en la generació:", error);
     chatHistory.value.push({
-      role: 'assistant',
+      role: "assistant",
       content:
         error.message ||
-        'Hi ha hagut un error inesperat. Si us plau, intenta de nou.',
+        "Hi ha hagut un error inesperat. Si us plau, intenta de nou.",
       error: true,
     });
   } finally {
@@ -44,11 +44,11 @@ const generateAIResponse = async (message) => {
   }
 };
 
-const sendMessage = async (message) => {
+const sendMessage = async message => {
   if (!message.trim() || isGenerating.value) return;
 
   chatHistory.value.push({
-    role: 'user',
+    role: "user",
     content: message,
   });
 
@@ -56,7 +56,7 @@ const sendMessage = async (message) => {
   await generateAIResponse(message);
 };
 
-const selectSuggestion = (suggestion) => {
+const selectSuggestion = suggestion => {
   sendMessage(suggestion);
 };
 
@@ -66,7 +66,7 @@ const rotateSuggestionsInterval = () => {
 
 onMounted(() => {
   chatHistory.value.push({
-    role: 'assistant',
+    role: "assistant",
     content:
       "Hola! Sóc el teu assistent per crear formularis. Descriu el tipus de formulari que necessites i t'ajudaré a generar-ho.",
   });

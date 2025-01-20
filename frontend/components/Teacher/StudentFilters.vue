@@ -2,10 +2,14 @@
 defineProps({
   searchQuery: String,
   selectedCourse: String,
-  selectedDivision: String
-})
+  selectedDivision: String,
+});
 
-defineEmits(['update:searchQuery', 'update:selectedCourse', 'update:selectedDivision'])
+defineEmits([
+  "update:searchQuery",
+  "update:selectedCourse",
+  "update:selectedDivision",
+]);
 </script>
 
 <template>

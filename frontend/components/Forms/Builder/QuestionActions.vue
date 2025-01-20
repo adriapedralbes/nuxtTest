@@ -1,23 +1,23 @@
 <script setup>
-import { ArrowPathIcon, PencilIcon } from '@heroicons/vue/24/outline'
+import { ArrowPathIcon, PencilIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
   question: {
     type: Object,
-    required: true
+    required: true,
   },
-  isLoading: Boolean
-})
+  isLoading: Boolean,
+});
 
-const emit = defineEmits(['edit', 'regenerate'])
+const emit = defineEmits(["edit", "regenerate"]);
 
 const handleEdit = () => {
-  emit('edit', props.question)
-}
+  emit("edit", props.question);
+};
 
 const handleRegenerate = () => {
-  emit('regenerate', props.question)
-}
+  emit("regenerate", props.question);
+};
 </script>
 
 <template>

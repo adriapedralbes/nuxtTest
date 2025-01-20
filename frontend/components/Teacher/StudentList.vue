@@ -1,22 +1,21 @@
 <script setup>
-import { useStudentsStore } from '@/src/stores/studentsStore'
+import { useStudentsStore } from "@/src/stores/studentsStore";
 
 // Usar store
-const studentsStore = useStudentsStore()
+const studentsStore = useStudentsStore();
 
 // Llamar a la API al montar el componente
 onMounted(() => {
-  studentsStore.fetchStudents()
-})
+  studentsStore.fetchStudents();
+});
 
 // Declara la prop 'student' en este componente
 defineProps({
   students: {
     type: Object,
-    required: true
-  }
-})
-
+    required: true,
+  },
+});
 </script>
 
 <template>

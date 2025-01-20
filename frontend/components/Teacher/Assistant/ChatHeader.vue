@@ -1,5 +1,5 @@
 <script setup>
-import { useChatStore } from '@/src/stores/chatStore';
+import { useChatStore } from "@/src/stores/chatStore";
 
 const chatStore = useChatStore();
 
@@ -22,7 +22,9 @@ const toggleDocuments = () => {
   <div>
     <div class="p-4 border-b flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center"
+        >
           <span class="text-white text-xl">AI</span>
         </div>
         <div>
@@ -33,13 +35,23 @@ const toggleDocuments = () => {
           </div>
         </div>
       </div>
-      <button @click="toggleDocuments" 
-              class="text-sm text-gray-500 hover:text-gray-700 flex items-center space-x-1">
+      <button
+        @click="toggleDocuments"
+        class="text-sm text-gray-500 hover:text-gray-700 flex items-center space-x-1"
+      >
         <span>{{ documentCount }} documents</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" 
-             :class="{ 'transform rotate-180': showDocuments }"
-             viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          :class="{ 'transform rotate-180': showDocuments }"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
         </svg>
       </button>
     </div>

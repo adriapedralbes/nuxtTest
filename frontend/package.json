@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "format": "prettier --write \"**/*.{js,vue,css,md}\""
+    "format": "prettier --write \"**/*.{js,vue,css}\""
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

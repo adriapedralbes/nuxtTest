@@ -3,7 +3,7 @@ const props = defineProps({
   modelValue: String,
   placeholder: {
     type: String,
-    default: '', // Valor predeterminado para evitar errores
+    default: "", // Valor predeterminado para evitar errores
   },
   hasError: {
     type: Boolean,
@@ -11,7 +11,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 </script>
 
 <template>
@@ -19,7 +19,7 @@ const emit = defineEmits(['update:modelValue']);
     <input
       type="text"
       :value="modelValue"
-      @input="(e) => emit('update:modelValue', e.target.value)"
+      @input="e => emit('update:modelValue', e.target.value)"
       :placeholder="placeholder"
       :class="{ error: hasError }"
     />
@@ -28,29 +28,29 @@ const emit = defineEmits(['update:modelValue']);
 
 <style scoped>
 .input-wrapper {
-    position: relative;
+  position: relative;
 }
 
 input {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    background: var(--input-background);
-    transition: border-color 0.2s;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: var(--input-background);
+  transition: border-color 0.2s;
 }
 
 input:focus {
-    outline: none;
-    border-color: var(--color-primary);
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 input.error {
-    border-color: #ff4d4f;
+  border-color: #ff4d4f;
 }
 
 input::placeholder {
-    color: #999;
+  color: #999;
 }
 </style>

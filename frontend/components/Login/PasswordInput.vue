@@ -4,7 +4,7 @@ const props = defineProps({
   hasError: Boolean,
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(["update:modelValue"]);
 
 const showPassword = ref(false);
 
@@ -29,7 +29,9 @@ const togglePasswordVisibility = () => {
       type="button"
       class="toggle-password"
       @click="togglePasswordVisibility"
-      :aria-label="showPassword ? 'Amaga la contrasenya' : 'Mostra la contrasenya'"
+      :aria-label="
+        showPassword ? 'Amaga la contrasenya' : 'Mostra la contrasenya'
+      "
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -62,49 +64,49 @@ const togglePasswordVisibility = () => {
 
 <style scoped>
 .password-input {
-    position: relative;
+  position: relative;
 }
 
 input {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    padding-right: 2.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.75rem;
-    font-size: 1rem;
-    background: var(--input-background);
-    transition: border-color 0.2s;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  padding-right: 2.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: var(--input-background);
+  transition: border-color 0.2s;
 }
 
 input:focus {
-    outline: none;
-    border-color: var(--color-primary);
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 input.error {
-    border-color: #ff4d4f;
+  border-color: #ff4d4f;
 }
 
 input::placeholder {
-    color: #999;
+  color: #999;
 }
 
 .toggle-password {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    padding: 0.25rem;
-    cursor: pointer;
-    color: #666;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .toggle-password:hover {
-    color: var(--text-primary);
+  color: var(--text-primary);
 }
 </style>

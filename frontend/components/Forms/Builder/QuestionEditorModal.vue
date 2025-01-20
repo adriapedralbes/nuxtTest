@@ -1,52 +1,55 @@
 <script setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { XMarkIcon } from "@heroicons/vue/24/outline";
 
 const props = defineProps({
   modelValue: Boolean,
   question: {
     type: Object,
-    default: null
-  }
-})
+    default: null,
+  },
+});
 
-const emit = defineEmits(['update:modelValue', 'save'])
+const emit = defineEmits(["update:modelValue", "save"]);
 
-const localQuestion = ref(null)
+const localQuestion = ref(null);
 
-watch(() => props.question, (newQuestion) => {
-  if (newQuestion) {
-    localQuestion.value = JSON.parse(JSON.stringify(newQuestion))
-  }
-}, { immediate: true })
+watch(
+  () => props.question,
+  newQuestion => {
+    if (newQuestion) {
+      localQuestion.value = JSON.parse(JSON.stringify(newQuestion));
+    }
+  },
+  { immediate: true }
+);
 
 const addOption = () => {
   if (!localQuestion.value.options) {
-    localQuestion.value.options = []
+    localQuestion.value.options = [];
   }
   localQuestion.value.options.push({
-    text: '',
-    value: localQuestion.value.options.length
-  })
-}
+    text: "",
+    value: localQuestion.value.options.length,
+  });
+};
 
-const removeOption = (index) => {
-  localQuestion.value.options.splice(index, 1)
+const removeOption = index => {
+  localQuestion.value.options.splice(index, 1);
   // Reindex values
   localQuestion.value.options = localQuestion.value.options.map((opt, idx) => ({
     ...opt,
-    value: idx
-  }))
-}
+    value: idx,
+  }));
+};
 
 const handleSave = () => {
-  
-  emit('save', localQuestion.value)
-  emit('update:modelValue', false)
-}
+  emit("save", localQuestion.value);
+  emit("update:modelValue", false);
+};
 
 const close = () => {
-  emit('update:modelValue', false)
-}
+  emit("update:modelValue", false);
+};
 </script>
 
 <template>
@@ -55,8 +58,12 @@ const close = () => {
     <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
 
     <!-- Modal -->
-    <div class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0">
-      <div class="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+    <div
+      class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+      >
         <!-- Close button -->
         <button
           @click="close"

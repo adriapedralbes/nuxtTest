@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const suggestions = [
   "Com puc identificar situacions de bullying a la meva classe?",
@@ -8,10 +8,10 @@ const suggestions = [
   "Necessito idees per a activitats de treball en equip",
 ];
 
-const emit = defineEmits(['select']);
+const emit = defineEmits(["select"]);
 
-const handleSelect = (suggestion) => {
-  emit('select', suggestion);
+const handleSelect = suggestion => {
+  emit("select", suggestion);
 };
 </script>
 

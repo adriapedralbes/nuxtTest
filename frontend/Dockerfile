@@ -13,8 +13,8 @@ RUN npm install
 # Copiar el resto de los archivos del proyecto
 COPY . .
 
-# Exponer el puerto utilizado por Vite
-EXPOSE 5173
+# Exponer el puerto utilizado por Nuxt
+EXPOSE 3000
 
 # Comando para iniciar el servidor de desarrollo con hot-reload
 CMD ["npm", "run", "dev", "--", "--host"]

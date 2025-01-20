@@ -1,48 +1,48 @@
 <script setup>
-import { CheckCircleIcon } from '@heroicons/vue/24/outline'
-import { useTypingEffect } from '@/components/utils/chat'
+import { CheckCircleIcon } from "@heroicons/vue/24/outline";
+import { useTypingEffect } from "@/components/utils/chat";
 
 const props = defineProps({
   message: {
     type: Object,
-    required: true
+    required: true,
   },
-  isLast: Boolean
-})
+  isLast: Boolean,
+});
 
-const { content, isTyping, typeMessage } = useTypingEffect()
+const { content, isTyping, typeMessage } = useTypingEffect();
 
 onMounted(() => {
-  if (props.message.role === 'assistant') {
-    typeMessage(props.message.content)
+  if (props.message.role === "assistant") {
+    typeMessage(props.message.content);
   } else {
-    content.value = props.message.content
-    isTyping.value = false
+    content.value = props.message.content;
+    isTyping.value = false;
   }
-})
+});
 </script>
 
 <template>
-  <div 
+  <div
     class="message-container"
     :class="[
       message.role === 'user' ? 'justify-end' : 'justify-start',
-      'mb-4 animate-fade-in'
+      'mb-4 animate-fade-in',
     ]"
   >
-    <div 
+    <div
       class="max-w-[80%] rounded-lg p-4"
       :class="[
-        message.role === 'user' 
-          ? 'bg-primary text-white ml-auto' 
-          : 'bg-gray-100 text-gray-800'
+        message.role === 'user'
+          ? 'bg-primary text-white ml-auto'
+          : 'bg-gray-100 text-gray-800',
       ]"
     >
-      <p class="message-text" :class="{ 'typing': isTyping }">
+      <p class="message-text" :class="{ typing: isTyping }">
         {{ content }}<span v-if="isTyping" class="typing-cursor">|</span>
       </p>
-      
-      <div 
+
+      <div
         v-if="message.role === 'assistant' && message.questions"
         class="mt-4 space-y-2 animate-fade-in"
       >
@@ -52,7 +52,9 @@ onMounted(() => {
           class="bg-white p-3 rounded border border-gray-200 shadow-sm hover:border-primary transition-colors duration-200"
         >
           <div class="flex items-start gap-2">
-            <CheckCircleIcon class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+            <CheckCircleIcon
+              class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"
+            />
             <div>
               <p class="font-medium">{{ question.title }}</p>
               <p class="text-sm text-gray-500">{{ question.type }}</p>
@@ -80,12 +82,23 @@ onMounted(() => {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes blink {
-  from, to { opacity: 1; }
-  50% { opacity: 0; }
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { useTypingEffect } from '@/components/utils/chat';
+import { useTypingEffect } from "@/components/utils/chat";
 
 const props = defineProps({
   questions: {
@@ -11,19 +11,25 @@ const props = defineProps({
   context: String,
 });
 
-const emit = defineEmits(['edit-question', 'regenerate-question', 'save', 'send']);
+const emit = defineEmits([
+  "edit-question",
+  "regenerate-question",
+  "save",
+  "send",
+]);
 const localQuestions = ref([...props.questions]); // Copia local de las preguntas
 const visibleQuestions = ref([]);
 const loadingQuestionId = ref(null);
 const showEditorModal = ref(false);
 const selectedQuestion = ref(null);
 const { content: titleContent, typeMessage: typeTitle } = useTypingEffect(50);
-const { content: descriptionContent, typeMessage: typeDescription } = useTypingEffect(30);
+const { content: descriptionContent, typeMessage: typeDescription } =
+  useTypingEffect(30);
 
 // Sincronizar cambios en props con la copia local
 watch(
   () => props.questions,
-  (newQuestions) => {
+  newQuestions => {
     localQuestions.value = [...newQuestions];
   },
   { immediate: true }
@@ -31,7 +37,7 @@ watch(
 
 watch(
   () => props.title,
-  async (newTitle) => {
+  async newTitle => {
     if (newTitle) {
       await typeTitle(newTitle);
     }
@@ -41,7 +47,7 @@ watch(
 
 watch(
   () => props.description,
-  async (newDescription) => {
+  async newDescription => {
     if (newDescription) {
       await typeDescription(newDescription);
     }
@@ -51,32 +57,32 @@ watch(
 
 watch(
   () => localQuestions.value,
-  async (newQuestions) => {
+  async newQuestions => {
     visibleQuestions.value = [];
     for (let i = 0; i < newQuestions.length; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 500));
       visibleQuestions.value.push(newQuestions[i]);
     }
   },
   { immediate: true }
 );
 
-const handleEditQuestion = (question) => {
+const handleEditQuestion = question => {
   selectedQuestion.value = question;
   showEditorModal.value = true;
 };
 
-const handleSaveQuestion = (editedQuestion) => {
-  const index = localQuestions.value.findIndex((q) => q.id === editedQuestion.id);
+const handleSaveQuestion = editedQuestion => {
+  const index = localQuestions.value.findIndex(q => q.id === editedQuestion.id);
   if (index !== -1) {
     localQuestions.value.splice(index, 1, editedQuestion);
   }
-  emit('edit-question', { question: editedQuestion });
+  emit("edit-question", { question: editedQuestion });
 };
 
-const handleRegenerateQuestion = async (question) => {
+const handleRegenerateQuestion = async question => {
   loadingQuestionId.value = question.id;
-  await emit('regenerate-question', question);
+  await emit("regenerate-question", question);
   loadingQuestionId.value = null;
 };
 
@@ -90,10 +96,10 @@ const handleSave = async () => {
   // console.log('Datos que se enviarán:', JSON.stringify(formData, null, 2)); // Verifica la estructura del objeto
 
   try {
-    const response = await fetch('http://localhost:8000/api/forms-save', {
-      method: 'POST',
+    const response = await fetch("http://localhost:8000/api/forms-save", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
@@ -107,16 +113,18 @@ const handleSave = async () => {
 
     const result = await response.json();
     // console.log('Resposta del servidor:', result);
-    showToastMessage('Formulari desat amb èxit.');
+    showToastMessage("Formulari desat amb èxit.");
 
     // Espera 1 segundo antes de redirigir
     setTimeout(() => {
-      navigateTo('/professor/formularis');
+      navigateTo("/professor/formularis");
     }, 1000); // Redirigir después de 1 segundo
-
   } catch (error) {
     // console.error('Error en desar el formulari:', error);
-    showToastMessage('Hi va haver un error en desar el formulari. Si us plau, torna-ho a intentar.', 'error-toast');
+    showToastMessage(
+      "Hi va haver un error en desar el formulari. Si us plau, torna-ho a intentar.",
+      "error-toast"
+    );
   }
 };
 
@@ -128,19 +136,19 @@ const handleDownload = () => {
   };
 
   const json = JSON.stringify(formData, null, 2); // Convertir a JSON con formato legible
-  const blob = new Blob([json], { type: 'application/json' });
-  const link = document.createElement('a');
+  const blob = new Blob([json], { type: "application/json" });
+  const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = 'formulario.json'; // Nombre del archivo a descargar
+  link.download = "formulario.json"; // Nombre del archivo a descargar
   link.click();
 };
 
 // Mostrar Toast
 const showToast = ref(false);
-const toastMessage = ref('');
-const toastType = ref('success-toast');
+const toastMessage = ref("");
+const toastType = ref("success-toast");
 
-function showToastMessage(message, type = 'success-toast') {
+function showToastMessage(message, type = "success-toast") {
   toastMessage.value = message;
   toastType.value = type;
   showToast.value = true;
@@ -150,7 +158,6 @@ function showToastMessage(message, type = 'success-toast') {
     showToast.value = false;
   }, 1000);
 }
-
 </script>
 
 <template>
@@ -164,56 +171,91 @@ function showToastMessage(message, type = 'success-toast') {
       <div v-if="title" class="card animate-fade-in">
         <div class="flex justify-between items-center">
           <h2 class="text-2xl font-bold mb-2">{{ titleContent }}</h2>
-          <button @click="handleDownload" class="text-gray-600 hover:text-primary transition duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          <button
+            @click="handleDownload"
+            class="text-gray-600 hover:text-primary transition duration-200"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+              />
             </svg>
           </button>
         </div>
         <p class="text-gray-600">{{ descriptionContent }}</p>
       </div>
 
-      <div v-for="(question, index) in visibleQuestions" :key="index"
-        class="border rounded-lg p-6 bg-white animate-slide-up">
+      <div
+        v-for="(question, index) in visibleQuestions"
+        :key="index"
+        class="border rounded-lg p-6 bg-white animate-slide-up"
+      >
         <div class="flex justify-between items-start mb-4">
           <h3 class="text-lg font-medium">{{ question.title }}</h3>
-          <FormsBuilderQuestionActions :question="question" :is-loading="loadingQuestionId === question.id" @edit="handleEditQuestion"
-            @regenerate="handleRegenerateQuestion" />
+          <FormsBuilderQuestionActions
+            :question="question"
+            :is-loading="loadingQuestionId === question.id"
+            @edit="handleEditQuestion"
+            @regenerate="handleRegenerateQuestion"
+          />
         </div>
 
         <div class="space-y-4">
           <template v-if="['multiple', 'checkbox'].includes(question.type)">
-            <div v-for="option in question.options" :key="option.value" class="flex items-center space-x-2">
-              <input :type="question.type === 'multiple' ? 'radio' : 'checkbox'" :name="`question-${index}`"
-                :value="option.value" class="w-4 h-4 text-primary focus:ring-primary" />
+            <div
+              v-for="option in question.options"
+              :key="option.value"
+              class="flex items-center space-x-2"
+            >
+              <input
+                :type="question.type === 'multiple' ? 'radio' : 'checkbox'"
+                :name="`question-${index}`"
+                :value="option.value"
+                class="w-4 h-4 text-primary focus:ring-primary"
+              />
               <label class="text-gray-700">{{ option.text }}</label>
             </div>
           </template>
 
           <template v-else-if="question.type === 'text'">
-            <textarea rows="3"
+            <textarea
+              rows="3"
               class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="Tu respuesta..."></textarea>
+              placeholder="Tu respuesta..."
+            ></textarea>
           </template>
 
           <template v-else-if="question.type === 'number'">
-            <input type="number"
+            <input
+              type="number"
               class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="0" />
+              placeholder="0"
+            />
           </template>
         </div>
       </div>
 
-      <div v-if="localQuestions.length > 0" class="flex justify-end space-x-4 pt-4">
-        <button @click="handleSave" class="btn btn-primary">
-          Guardar
-        </button>
-
+      <div
+        v-if="localQuestions.length > 0"
+        class="flex justify-end space-x-4 pt-4"
+      >
+        <button @click="handleSave" class="btn btn-primary">Guardar</button>
       </div>
 
-      <FormsBuilderQuestionEditorModal v-model="showEditorModal" :question="selectedQuestion" @save="handleSaveQuestion" />
+      <FormsBuilderQuestionEditorModal
+        v-model="showEditorModal"
+        :question="selectedQuestion"
+        @save="handleSaveQuestion"
+      />
     </div>
   </div>
 </template>

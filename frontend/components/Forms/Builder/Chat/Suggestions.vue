@@ -1,14 +1,14 @@
 <script setup>
-import { SparklesIcon } from '@heroicons/vue/24/outline'
+import { SparklesIcon } from "@heroicons/vue/24/outline";
 
 defineProps({
   suggestions: {
     type: Array,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-defineEmits(['select'])
+defineEmits(["select"]);
 </script>
 
 <template>

@@ -25,7 +25,7 @@ const suggestionGroups = [
     "Valoració de recursos didàctics",
     "Suggeriments de millora del curs",
     "Feedback sobre activitats extraescolars",
-    "Avaluació del pla d'estudis"
+    "Avaluació del pla d'estudis",
   ],
   // Desenvolupament personal
   [
@@ -35,32 +35,33 @@ const suggestionGroups = [
     "Enquesta sobre gestió del temps",
     "Formulari d'objectius acadèmics",
     "Valoració de competències digitals",
-  ]
-]
+  ],
+];
 
 export function useFormSuggestions() {
-  const currentGroupIndex = ref(0)
-  
+  const currentGroupIndex = ref(0);
+
   const rotateSuggestions = () => {
-    currentGroupIndex.value = (currentGroupIndex.value + 1) % suggestionGroups.length
-    return getRandomFromCurrentGroup()
-  }
+    currentGroupIndex.value =
+      (currentGroupIndex.value + 1) % suggestionGroups.length;
+    return getRandomFromCurrentGroup();
+  };
 
   const getRandomFromCurrentGroup = () => {
-    const currentGroup = suggestionGroups[currentGroupIndex.value]
-    const shuffled = [...currentGroup].sort(() => Math.random() - 0.5)
-    return shuffled.slice(0, 3) // Return only 3 random suggestions
-  }
+    const currentGroup = suggestionGroups[currentGroupIndex.value];
+    const shuffled = [...currentGroup].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 3); // Return only 3 random suggestions
+  };
 
   const getRandomSuggestions = () => {
-    const allSuggestions = suggestionGroups.flat()
-    const shuffled = [...allSuggestions].sort(() => Math.random() - 0.5)
-    return shuffled.slice(0, 3)
-  }
+    const allSuggestions = suggestionGroups.flat();
+    const shuffled = [...allSuggestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 3);
+  };
 
   return {
     getCurrentSuggestions: getRandomFromCurrentGroup,
     rotateSuggestions,
-    getRandomSuggestions
-  }
+    getRandomSuggestions,
+  };
 }

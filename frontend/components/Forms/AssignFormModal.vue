@@ -1,64 +1,70 @@
 <script setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { useFormAssignmentsStore } from '@/src/stores/formAssignments'
+import { XMarkIcon } from "@heroicons/vue/24/outline";
+import { useFormAssignmentsStore } from "@/src/stores/formAssignments";
 
 const props = defineProps({
   modelValue: Boolean,
   form: {
     type: Object,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-const emit = defineEmits(['update:modelValue', 'assigned'])
-const formAssignmentsStore = useFormAssignmentsStore()
+const emit = defineEmits(["update:modelValue", "assigned"]);
+const formAssignmentsStore = useFormAssignmentsStore();
 
-const dueDate = ref(null)
-const students = ref([])
-const selectedStudents = ref([])
+const dueDate = ref(null);
+const students = ref([]);
+const selectedStudents = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:8000/api/users', {
-      method: 'GET',
+    const response = await fetch("http://localhost:8000/api/users", {
+      method: "GET",
       headers: {
-        'Accept': 'application/json',
+        Accept: "application/json",
       },
     });
 
     if (!response.ok) {
-      throw new Error('Error obteniendo los datos.');
+      throw new Error("Error obteniendo los datos.");
     }
 
     students.value = await response.json();
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 });
 
 const assignForm = () => {
-  const studentsToAssign = students.value.filter(s => selectedStudents.value.includes(s.id))
+  const studentsToAssign = students.value.filter(s =>
+    selectedStudents.value.includes(s.id)
+  );
   const assignments = formAssignmentsStore.assignFormToStudents(
     props.form,
     studentsToAssign,
     dueDate.value ? new Date(dueDate.value) : null
-  )
-  
-  emit('assigned', assignments)
-  emit('update:modelValue', false)
-}
+  );
+
+  emit("assigned", assignments);
+  emit("update:modelValue", false);
+};
 
 const close = () => {
-  emit('update:modelValue', false)
-}
+  emit("update:modelValue", false);
+};
 </script>
 
 <template>
   <div v-if="props.modelValue" class="fixed inset-0 z-50 overflow-y-auto">
     <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
 
-    <div class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0">
-      <div class="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+    <div
+      class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+      >
         <button
           @click="close"
           class="absolute right-4 top-4 text-gray-400 hover:text-gray-500"
@@ -89,7 +95,8 @@ const close = () => {
               </label>
               <div class="max-h-60 overflow-y-auto border rounded-md p-2">
                 <div
-                  v-for="student in students.filter(f => f.role_id === 2)" :key="student.id_student"
+                  v-for="student in students.filter(f => f.role_id === 2)"
+                  :key="student.id_student"
                   class="flex items-center space-x-2 p-2 hover:bg-gray-50"
                 >
                   <input
@@ -99,7 +106,9 @@ const close = () => {
                     :value="student.id"
                     class="rounded text-primary focus:ring-primary"
                   />
-                  <label :for="'student-' + student.id">{{ student.name }}</label>
+                  <label :for="'student-' + student.id">{{
+                    student.name
+                  }}</label>
                 </div>
               </div>
             </div>

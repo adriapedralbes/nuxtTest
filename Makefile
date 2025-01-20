@@ -55,5 +55,8 @@ show:
 	@echo "$(CYAN)\n==> Mostrando contenedores activos:$(RESET)"
 	@docker ps
 
+format:
+	docker exec -it $(VUE_CONTAINER) npm run format
+
 
 

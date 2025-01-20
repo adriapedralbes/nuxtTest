@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useChatStore = defineStore('chat', {
+export const useChatStore = defineStore("chat", {
   state: () => ({
     chats: [],
     currentChatId: null,
@@ -10,7 +10,7 @@ export const useChatStore = defineStore('chat', {
     createNewChat() {
       const newChat = {
         id: Date.now(),
-        name: 'Nou Chat',
+        name: "Nou Chat",
         messages: [],
         documents: [],
         createdAt: new Date().toISOString(),
@@ -41,9 +41,12 @@ export const useChatStore = defineStore('chat', {
       if (chat) {
         chat.messages.push(message);
         // Update chat name with first user message if it's the first message
-        if (message.type === 'user' && chat.messages.length === 1) {
-          const words = message.content.split(' ').slice(0, 5).join(' ');
-          this.renameChat(chatId, words + (message.content.length > words.length ? '...' : ''));
+        if (message.type === "user" && chat.messages.length === 1) {
+          const words = message.content.split(" ").slice(0, 5).join(" ");
+          this.renameChat(
+            chatId,
+            words + (message.content.length > words.length ? "..." : "")
+          );
         }
         this.saveToLocalStorage();
       }
@@ -66,12 +69,12 @@ export const useChatStore = defineStore('chat', {
     },
 
     loadFromLocalStorage() {
-      const saved = localStorage.getItem('teachingAssistantChats');
+      const saved = localStorage.getItem("teachingAssistantChats");
       if (saved) {
         const data = JSON.parse(saved);
         this.chats = data.chats.map(chat => ({
           ...chat,
-          name: chat.name || 'Nou Chat',
+          name: chat.name || "Nou Chat",
           documents: chat.documents || [],
         }));
         this.currentChatId = data.currentChatId;
@@ -81,15 +84,18 @@ export const useChatStore = defineStore('chat', {
     },
 
     saveToLocalStorage() {
-      localStorage.setItem('teachingAssistantChats', JSON.stringify({
-        chats: this.chats,
-        currentChatId: this.currentChatId,
-      }));
+      localStorage.setItem(
+        "teachingAssistantChats",
+        JSON.stringify({
+          chats: this.chats,
+          currentChatId: this.currentChatId,
+        })
+      );
     },
   },
 
   getters: {
-    currentChat: (state) => {
+    currentChat: state => {
       return state.chats.find(chat => chat.id === state.currentChatId);
     },
   },

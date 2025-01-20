@@ -1,6 +1,6 @@
 <script setup>
-import { useChatStore } from '@/src/stores/chatStore';
-import { useChat } from '@/src/composables/useChat';
+import { useChatStore } from "@/src/stores/chatStore";
+import { useChat } from "@/src/composables/useChat";
 
 const chatStore = useChatStore();
 const { sendMessage, isLoading, processFile } = useChat();
@@ -9,14 +9,14 @@ onMounted(() => {
   chatStore.loadFromLocalStorage();
 });
 
-const handleSend = async (message) => {
+const handleSend = async message => {
   if (!chatStore.currentChatId) {
     chatStore.createNewChat();
   }
   await sendMessage(message, chatStore.currentChatId);
 };
 
-const handleFileContent = async (content) => {
+const handleFileContent = async content => {
   if (!chatStore.currentChatId) {
     chatStore.createNewChat();
   }
@@ -34,12 +34,12 @@ const handleFileContent = async (content) => {
     <!-- Main Chat Area -->
     <div class="flex-1 h-screen flex flex-col bg-white">
       <TeacherAssistantChatHeader />
-      <TeacherAssistantMessageList 
+      <TeacherAssistantMessageList
         :messages="chatStore.currentChat?.messages || []"
         :is-loading="isLoading"
       />
       <div class="border-t border-gray-100 py-4">
-        <TeacherAssistantMessageInput 
+        <TeacherAssistantMessageInput
           :is-loading="isLoading"
           @send="handleSend"
           @file-processed="handleFileContent"
