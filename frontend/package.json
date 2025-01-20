@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "format": "prettier --write \"**/*.{js,vue,css,md}\""
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -21,6 +22,7 @@
     "vue3-google-login": "^2.0.33"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.13.1"
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "prettier": "^3.4.2"
   }
 }
