@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { DocumentDuplicateIcon, PencilIcon } from "@heroicons/vue/24/outline";
-import { useFormTemplatesStore } from "@/src/stores/formTemplates";
+import { useFormTemplatesStore } from "@/stores/formTemplates";
 
 const emit = defineEmits(["select"]);
 const formTemplatesStore = useFormTemplatesStore();

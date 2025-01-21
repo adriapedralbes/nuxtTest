@@ -1,5 +1,5 @@
 <script setup>
-import { generateFormQuestions } from "@/src/services/gemini";
+import { generateFormQuestions } from "@/services/gemini";
 import { useScrollToBottom } from "@/components/utils/chat";
 import { useFormSuggestions } from "@/components/utils/formSuggestions";
 

@@ -1,6 +1,6 @@
 <script setup>
-import { useChatStore } from "@/src/stores/chatStore";
-import { useKnowledgeStore } from "@/src/stores/knowledgeStore";
+import { useChatStore } from "@/stores/chatStore";
+import { useKnowledgeStore } from "@/stores/knowledgeStore";
 
 const chatStore = useChatStore();
 const knowledgeStore = useKnowledgeStore();

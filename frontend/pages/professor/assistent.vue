@@ -1,6 +1,6 @@
 <script setup>
-import { useChatStore } from "@/src/stores/chatStore";
-import { useChat } from "@/src/composables/useChat";
+import { useChatStore } from "@/stores/chatStore";
+import { useChat } from "@/composables/useChat";
 
 const chatStore = useChatStore();
 const { sendMessage, isLoading, processFile } = useChat();

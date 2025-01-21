@@ -1,6 +1,6 @@
 <script setup>
 import { EyeIcon } from "@heroicons/vue/24/outline";
-import { useStudentsStore } from "@/src/stores/studentsStore";
+import { useStudentsStore } from "@/stores/studentsStore";
 
 const studentsStore = useStudentsStore();
 onMounted(() => {

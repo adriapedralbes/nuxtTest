@@ -1,6 +1,6 @@
 <script setup>
-import { useKnowledgeStore } from "@/src/stores/knowledgeStore";
-import { useChatStore } from "@/src/stores/chatStore";
+import { useKnowledgeStore } from "@/stores/knowledgeStore";
+import { useChatStore } from "@/stores/chatStore";
 
 const props = defineProps({
   chatId: {

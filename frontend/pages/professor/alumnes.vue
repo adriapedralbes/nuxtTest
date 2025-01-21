@@ -1,6 +1,6 @@
 <script setup>
-import { useStudentSearch } from "@/src/composables/useStudentSearch";
-import { useStudentsStore } from "@/src/stores/studentsStore";
+import { useStudentSearch } from "@/composables/useStudentSearch";
+import { useStudentsStore } from "@/stores/studentsStore";
 
 const studentsStore = useStudentsStore();
 const isLoading = ref(true);

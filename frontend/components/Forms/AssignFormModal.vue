@@ -1,6 +1,6 @@
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import { useFormAssignmentsStore } from "@/src/stores/formAssignments";
+import { useFormAssignmentsStore } from "@/stores/formAssignments";
 
 const props = defineProps({
   modelValue: Boolean,

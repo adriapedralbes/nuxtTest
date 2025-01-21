@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { useChatStore } from "@/src/stores/chatStore";
-import { useKnowledgeStore } from "@/src/stores/knowledgeStore";
+import { useChatStore } from "@/stores/chatStore";
+import { useKnowledgeStore } from "@/stores/knowledgeStore";
 
 export function useChat() {
   const isLoading = ref(false);

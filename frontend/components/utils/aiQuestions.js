@@ -1,4 +1,4 @@
-import { generateFormQuestions } from "@/src/services/gemini";
+import { generateFormQuestions } from "@/services/gemini";
 
 export async function regenerateQuestion(originalQuestion, context) {
   try {

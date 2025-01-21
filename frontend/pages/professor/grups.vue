@@ -1,5 +1,5 @@
 <script setup>
-import { useStudentsStore } from "@/src/stores/studentsStore";
+import { useStudentsStore } from "@/stores/studentsStore";
 
 const studentsStore = useStudentsStore();
 const selectedStudents = ref([]);

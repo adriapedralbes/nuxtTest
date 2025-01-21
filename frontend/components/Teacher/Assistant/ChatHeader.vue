@@ -1,5 +1,5 @@
 <script setup>
-import { useChatStore } from "@/src/stores/chatStore";
+import { useChatStore } from "@/stores/chatStore";
 
 const chatStore = useChatStore();
 
