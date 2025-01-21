@@ -58,8 +58,7 @@
 </template>
 
 <script setup>
-import { useAuthStore } from "@/stores/auth";
-
+import { ref, onMounted } from "vue";
 const authStore = useAuthStore();
 const forms = ref([]);
 const user = authStore.user;
@@ -72,7 +71,7 @@ const loadFormsByUserId = async userId => {
       {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+          Authorization: `Bearer ${authStore.token}`,
           Accept: "application/json",
         },
       }
@@ -89,7 +88,9 @@ const loadFormsByUserId = async userId => {
 };
 
 onMounted(() => {
-  loadFormsByUserId(userId);
+  if (import.meta.client) {
+    loadFormsByUserId(userId);
+  }
 });
 
 // Filtrar solo los formularios con answered === 0
@@ -100,11 +101,11 @@ const filteredForms = computed(() => {
 // Manejador del clic en el formulario
 const handleFormClick = formId => {
   if (formId === 2) {
-    navigateTo(`/formCecs/${formId}`); // Redirige a la ruta /formCecs si el formId es 2
+    navigateTo(`/formCecs/${formId}`);
   } else if (formId === 3) {
-    navigateTo(`/sociogram`); // Redirige a /sociogram si el formId es 3
+    navigateTo(`/sociogram`);
   } else {
-    navigateTo(`/alumne/forms/${formId}`); // Redirige a la ruta correspondiente para cualquier otro formId
+    navigateTo(`/alumne/forms/${formId}`);
   }
 };
 </script>

@@ -1,6 +1,5 @@
 <script setup>
-import { useAuthStore } from "@/stores/auth";
-
+import { ref, onMounted } from "vue";
 const authStore = useAuthStore();
 const userData = ref({
   name: "",
@@ -10,18 +9,31 @@ const userData = ref({
 });
 
 onMounted(() => {
-  const user = authStore.user;
+  // Solo ejecuta este código en el cliente (navegador)
+  if (import.meta.client) {
+    const user = authStore.user;
 
-  if (user) {
-    // Asignamos la información del usuario
-    userData.value = {
-      name: user.name,
-      last_name: user.last_name,
-      email: user.email,
-      image: user.image,
-    };
-  } else {
-    // console.log("No hay usuario autenticado");
+    if (user) {
+      // Asignamos la información del usuario
+      userData.value = {
+        name: user.name,
+        last_name: user.last_name,
+        email: user.email,
+        image: user.image,
+      };
+
+      // Si tienes datos en localStorage que quieres recuperar, podrías hacerlo aquí:
+      const storedUserData = localStorage.getItem("user");
+      if (storedUserData) {
+        userData.value = JSON.parse(storedUserData);
+      }
+    } else {
+      // Si no hay usuario, tal vez podrías intentar recuperar datos del localStorage
+      const storedUserData = localStorage.getItem("user");
+      if (storedUserData) {
+        userData.value = JSON.parse(storedUserData);
+      }
+    }
   }
 });
 </script>
