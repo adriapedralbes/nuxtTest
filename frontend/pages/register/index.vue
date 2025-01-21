@@ -1,6 +1,6 @@
 <script setup>
 const name = ref("");
-const lastName = ref("");
+const last_name = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -13,7 +13,7 @@ const validateForm = () => {
     msgError.value = "El nom és obligatori";
     return false;
   }
-  if (!lastName.value) {
+  if (!last_name.value) {
     msgError.value = "El cognom és obligatori";
     return false;
   }
@@ -50,7 +50,7 @@ const gestioSubmit = async e => {
       },
       body: JSON.stringify({
         name: name.value,
-        lastName: lastName.value,
+        last_name: last_name.value,
         email: email.value,
         password: password.value,
         password_confirmation: confirmPassword.value, // Añade esto
@@ -97,9 +97,9 @@ const gestioSubmit = async e => {
           :has-msg-error="msgError && !name"
         />
         <LoginTextInput
-          v-model="lastName"
+          v-model="last_name"
           placeholder="Cognom "
-          :has-msg-error="msgError && !lastName"
+          :has-msg-error="msgError && !last_name"
         />
         <LoginTextInput
           v-model="email"
