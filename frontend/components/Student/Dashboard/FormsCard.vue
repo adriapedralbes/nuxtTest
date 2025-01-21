@@ -59,13 +59,13 @@
 
 <script setup>
 import { useAuthStore } from "@/stores/auth";
+import { ref, computed, watch, onMounted } from "vue";
 
 const authStore = useAuthStore();
 const forms = ref([]);
-const user = authStore.user;
-const userId = user.id;
 
-const loadFormsByUserId = async userId => {
+// Definimos la función loadFormsByUserId antes de usarla
+const loadFormsByUserId = async (userId) => {
   try {
     const response = await fetch(
       `http://localhost:8000/api/forms/user/${userId}`,
@@ -88,17 +88,28 @@ const loadFormsByUserId = async userId => {
   }
 };
 
-onMounted(() => {
-  loadFormsByUserId(userId);
-});
+// Watch para asegurar que 'user' esté disponible antes de hacer la carga de formularios
+watch(
+  () => authStore.user,
+  (newUser) => {
+    if (newUser && newUser.id) {
+      const userId = newUser.id;
+      console.log("User ID:", userId); // Verifica que se obtiene el userId
+      loadFormsByUserId(userId);
+    } else {
+      console.error("No se ha encontrado el userId.");
+    }
+  },
+  { immediate: true }
+);
 
 // Filtrar solo los formularios con answered === 0
 const filteredForms = computed(() => {
-  return forms.value.filter(form => form.answered === 0);
+  return forms.value.filter((form) => form.answered === 0);
 });
 
 // Manejador del clic en el formulario
-const handleFormClick = formId => {
+const handleFormClick = (formId) => {
   if (formId === 2) {
     navigateTo(`/formCecs/${formId}`); // Redirige a la ruta /formCecs si el formId es 2
   } else if (formId === 3) {
